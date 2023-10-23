@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react'
+
 export interface OnProgressProps {
   played: number
   playedSeconds: number
@@ -7,4 +9,7 @@ export interface OnProgressProps {
 
 export interface IProps {
   isVisible?: boolean
+  playerTime?: number
+  setScreenName?: Dispatch<SetStateAction<'promo' | 'register' | 'finally'>>
+  setPlayerTime?: Dispatch<SetStateAction<number>>
 }

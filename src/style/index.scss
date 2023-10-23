@@ -1,4 +1,10 @@
 @import 'normalize.scss';
+%bg-position {
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -10,6 +16,27 @@ body {
   height: 720px;
   border: 1px solid red;
   position: relative;
+  background-image: url(../assets/image/bg.png);
+  @extend %bg-position;
+  .btnExit {
+    width: 60px;
+    height: 38px;
+    position: absolute;
+    top: 29px;
+    right: 50px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: black;
+    color: white;
+  }
+  .register {
+    width: 365px;
+    height: 720px;
+    background-color: #86d3f4;
+  }
 }
 .playerCurtain {
   position: absolute;
@@ -34,9 +61,7 @@ body {
     .titleBanner,
     .qrCode,
     .textBanner {
-      background-position: 0 0;
-      background-repeat: no-repeat;
-      background-size: contain;
+      @extend %bg-position;
     }
     .titleBanner {
       width: 170px;

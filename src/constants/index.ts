@@ -6,4 +6,4 @@ export const playerSettings = {
   width: 1280,
   height: 720,
   controls: false,
-};
+}
