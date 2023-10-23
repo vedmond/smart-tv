@@ -35,7 +35,131 @@ body {
   .register {
     width: 365px;
     height: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     background-color: #86d3f4;
+    .titleRegister {
+      width: 177px;
+      height: 39px;
+      margin-top: 45px;
+      background-image: url(../assets/image/your_phone_number.png);
+      @extend %bg-position;
+    }
+    .phoneNumberBlock {
+      width: 310px;
+      height: 50px;
+      border: 1px solid red;
+      font-size: 35px;
+      font-weight: 700;
+    }
+    .textRegister {
+      width: 230px;
+      height: 25px;
+      background-image: url(../assets/image/we_write.png);
+      @extend %bg-position;
+    }
+    .virtualKeyboardBlock {
+      width: 325px;
+      height: 255px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5px;
+      border: 1px solid red;
+      .virtualKeyboardItems,
+      .virtualKeyboardItem__Backspace {
+        width: 90px;
+        height: 55px;
+        margin-left: 10px;
+        border: 2px solid black;
+        display: flex;
+        span {
+          display: inline-block;
+          margin: auto;
+        }
+      }
+      .virtualKeyboardItem__Backspace {
+        width: 197px;
+      }
+    }
+    .checkPersonalDataBlock {
+      width: 275px;
+      height: 50px;
+      border: 1px solid red;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      .checkbox {
+        position: relative;
+      }
+      .checkbox__input {
+        -webkit-appearance: none;
+        appearance: none;
+        position: absolute;
+      }
+      .checkbox__label {
+        padding-left: 25px;
+        cursor: pointer;
+      }
+      .checkbox__label:before {
+        content: '';
+        display: block;
+        width: 25px;
+        height: 25px;
+        border: 2px solid black;
+        background-color: #86d3f4;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .checkbox__label:after {
+        content: '';
+        display: block;
+        width: 25px;
+        height: 25px;
+        background: url(../assets/image/icons8-check.svg) no-repeat;
+        background-size: 20px 20px;
+        opacity: 0;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        z-index: 2;
+        transition: opacity 0.1s linear;
+      }
+      .checkbox__input:checked + .checkbox__label:before {
+        background-color: #86d3f4;
+        border-color: black;
+      }
+
+      .checkbox__input:checked + .checkbox__label:after {
+        opacity: 1;
+      }
+      .textCheckbox {
+        width: 220px;
+        height: 27px;
+        margin-top: 8px;
+        background-image: url(../assets/image/are_you_right.png);
+        @extend %bg-position;
+      }
+    }
+    .btnVirtualKeyboard {
+      width: 200px;
+      height: 50px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: #4e4e4e;
+      background-color: #86d3f4;
+      border: 2px solid #4e4e4e;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #070707;
+      color: white;
+    }
   }
 }
 .playerCurtain {
