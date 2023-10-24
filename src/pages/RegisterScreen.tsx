@@ -1,23 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { IProps } from '../types/interface'
+import { phoneNumberSample } from '../constants'
+import { newNumberField } from '../utils/newNumberField'
+import { VirtualKeyboard } from '../components/VirtualKeyboard'
+import { useKeyEventFilter } from '../utils/useKeyEventFilter.hook'
 
 export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
-  const phoneNumberSample = '+7(___)_ _ _-_ _-_ _'
-  const keyboardItems = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    'стереть',
-    '0',
-  ]
-  console.log(phoneNumberSample.split('').join(''))
+  const [valueNumber, setValueNumber] = useState('')
+  const [numberField, setNumberField] = useState(phoneNumberSample)
 
   useEffect(() => {
     const time = localStorage.getItem('videoTime')
@@ -25,29 +16,51 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
       if (setPlayerTime) setPlayerTime(Number(time))
     }
   }, [setPlayerTime])
+
+  useEffect(() => {
+    setNumberField(newNumberField(valueNumber))
+  }, [valueNumber])
+
+  const onKeyUp = useKeyEventFilter(valueNumber)
+
+  useEffect(() => {
+    document.addEventListener('keyup', onKeyUp)
+    return () => {
+      document.removeEventListener('keyup', onKeyUp)
+    }
+  }, [])
+
   const onClick = () => {
     if (setScreenName) setScreenName('promo')
   }
+
+  const onClickKey = (event: any) => {
+    const idKey = (event!.target as HTMLInputElement)!.id.split('')
+    idKey.splice(-4, 4)
+    const currentKey = idKey.join('')
+    if (
+      valueNumber.length < 10 &&
+      currentKey !== '10' &&
+      currentKey !== 'keyboard'
+    ) {
+      setValueNumber(valueNumber + currentKey)
+    }
+    if (valueNumber.length < 11 && currentKey === '10') {
+      const arr = valueNumber.split('')
+      arr.pop()
+      const str = arr.join('')
+      setValueNumber(str)
+    }
+  }
+
   return (
     <>
       <div className="register">
+        <input type="text" value={valueNumber} onChange={onClickKey} required />
         <div className="titleRegister"></div>
-        <div className="phoneNumberBlock">{phoneNumberSample}</div>
+        <div className="phoneNumberBlock">{numberField}</div>
         <div className="textRegister"></div>
-        <div className="virtualKeyboardBlock">
-          {keyboardItems.map((el) => (
-            <div
-              key={el}
-              className={`${
-                el === 'стереть'
-                  ? 'virtualKeyboardItem__Backspace'
-                  : 'virtualKeyboardItems'
-              }`}
-            >
-              <span>{el}</span>
-            </div>
-          ))}
-        </div>
+        <VirtualKeyboard onClickKey={onClickKey} />
         <div className="checkPersonalDataBlock">
           <div className="checkbox">
             <input

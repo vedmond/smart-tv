@@ -75,6 +75,7 @@ body {
         margin-left: 10px;
         border: 2px solid black;
         display: flex;
+        cursor: pointer;
         span {
           display: inline-block;
           margin: auto;
@@ -83,6 +84,13 @@ body {
       .virtualKeyboardItem__Backspace {
         width: 197px;
       }
+    }
+    .virtualKeyboardBlock div:hover {
+      box-shadow: -1px 0px 8px 1px rgba(34, 60, 80, 0.4);
+    }
+    .virtualKeyboardBlock div:active {
+      background-color: #070707;
+      color: white;
     }
     .checkPersonalDataBlock {
       width: 275px;

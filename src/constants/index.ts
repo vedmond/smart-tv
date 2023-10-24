@@ -7,3 +7,19 @@ export const playerSettings = {
   height: 720,
   controls: false,
 }
+
+export const keyboardItems = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  'стереть',
+  '0',
+]
+
+export const phoneNumberSample = '+7(___) ___ - __ - __'

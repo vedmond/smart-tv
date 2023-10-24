@@ -6,7 +6,7 @@ function App() {
   const [playerTime, setPlayerTime] = useState<number>(0)
   const [screenName, setScreenName] = useState<
     'promo' | 'register' | 'finally'
-  >('promo')
+  >('register')
   return (
     <div className="App">
       {screenName === 'promo' && (
