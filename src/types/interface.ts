@@ -11,8 +11,11 @@ export interface IProps {
   isVisible?: boolean
   playerTime?: number
   handleOnFocus?: string
+  isChecked?: boolean
+  numberField?: string
+  onChangeCheckboxInput?: (event: any) => void
   onClickKey?: (event: any) => void
-  onClick?: MouseEventHandler<HTMLButtonElement>
+  onClickExit?: MouseEventHandler<HTMLButtonElement>
   setScreenName?: Dispatch<SetStateAction<'promo' | 'register' | 'finally'>>
   setPlayerTime?: Dispatch<SetStateAction<number>>
 }
