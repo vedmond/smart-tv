@@ -2,7 +2,7 @@ import React from 'react'
 import { keyboardItems } from '../constants'
 import { IProps } from '../types/interface'
 
-export const VirtualKeyboard = ({ onClickKey }: IProps) => {
+export const VirtualKeyboard = ({ onClickKey, handleOnFocus }: IProps) => {
   return (
     <div className="virtualKeyboardBlock" id="keyboard-box">
       {keyboardItems.map((el, index) => (
@@ -13,6 +13,10 @@ export const VirtualKeyboard = ({ onClickKey }: IProps) => {
             el === 'стереть'
               ? 'virtualKeyboardItem__Backspace'
               : 'virtualKeyboardItems'
+          } ${
+            handleOnFocus === `${index === 10 ? 0 : index + 1}-key`
+              ? 'handleOnFocus'
+              : ''
           }`}
           onClick={onClickKey}
         >

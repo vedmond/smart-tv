@@ -28,6 +28,10 @@ body {
     color: black;
     cursor: pointer;
   }
+  .handleOnFocus {
+    background: #000;
+    color: #fff;
+  }
   button:hover {
     background-color: black;
     color: white;
@@ -40,6 +44,18 @@ body {
     justify-content: space-around;
     align-items: center;
     background-color: #86d3f4;
+    input[type='text'] {
+      width: 310px;
+      height: 50px;
+      font-size: 35px;
+      font-weight: 700;
+      color: #070707;
+      background-color: #86d3f4 !important;
+      border: 1px solid red;
+    }
+    input::placeholder {
+      color: #070707;
+    }
     .titleRegister {
       width: 177px;
       height: 39px;
@@ -84,6 +100,10 @@ body {
       .virtualKeyboardItem__Backspace {
         width: 197px;
       }
+      .handleOnFocus {
+        background: #000;
+        color: #fff;
+      }
     }
     .virtualKeyboardBlock div:hover {
       box-shadow: -1px 0px 8px 1px rgba(34, 60, 80, 0.4);
@@ -115,8 +135,8 @@ body {
       .checkbox__label:before {
         content: '';
         display: block;
-        width: 25px;
-        height: 25px;
+        width: 22px;
+        height: 21px;
         border: 2px solid black;
         background-color: #86d3f4;
         position: absolute;
@@ -167,6 +187,11 @@ body {
     button:hover {
       background-color: #070707;
       color: white;
+    }
+    .handleOnFocus {
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
     }
   }
 }

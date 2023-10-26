@@ -10,6 +10,7 @@ export interface OnProgressProps {
 export interface IProps {
   isVisible?: boolean
   playerTime?: number
+  handleOnFocus?: string
   onClickKey?: (event: any) => void
   setScreenName?: Dispatch<SetStateAction<'promo' | 'register' | 'finally'>>
   setPlayerTime?: Dispatch<SetStateAction<number>>

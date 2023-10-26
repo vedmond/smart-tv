@@ -1,7 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { Dispatch, useEffect } from 'react'
+import { arrowItems, keyboardItems } from '../constants'
 
-export const useKeyEventFilter = (valueNumber: string) => {
-  console.log('valueNumber =', valueNumber)
-
-  return (e: any) => console.log(valueNumber + e.key)
+export const useKeyEventFilter = (
+  setPressKeyNumber: Dispatch<React.SetStateAction<string>>,
+  setPressKeyArrow: Dispatch<React.SetStateAction<string>>,
+) => {
+  return (e: any) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const filterArrow = [...arrowItems]
+    const filterNumber = [...keyboardItems, 'Backspace']
+    if (filterArrow.includes(e.key)) setPressKeyArrow(e.key)
+    if (filterNumber.includes(e.key)) setPressKeyNumber(e.key)
+  }
 }
