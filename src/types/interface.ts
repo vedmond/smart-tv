@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, MouseEventHandler, SetStateAction } from 'react'
 
 export interface OnProgressProps {
   played: number
@@ -12,6 +12,7 @@ export interface IProps {
   playerTime?: number
   handleOnFocus?: string
   onClickKey?: (event: any) => void
+  onClick?: MouseEventHandler<HTMLButtonElement>
   setScreenName?: Dispatch<SetStateAction<'promo' | 'register' | 'finally'>>
   setPlayerTime?: Dispatch<SetStateAction<number>>
 }

@@ -1,7 +1,7 @@
 import React, { Dispatch, useEffect } from 'react'
 import { arrowItems, keyboardItems } from '../constants'
 
-export const useKeyEventFilter = (
+export const keyEventFilter = (
   setPressKeyNumber: Dispatch<React.SetStateAction<string>>,
   setPressKeyArrow: Dispatch<React.SetStateAction<string>>,
 ) => {
