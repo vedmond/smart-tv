@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
 import { IProps } from '../types/interface'
 import { phoneNumberSample } from '../constants'
 import { newNumberField } from '../utils/newNumberField'
@@ -26,7 +25,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   }, [setPlayerTime])
 
   useEffect(() => {
-    setValue(pressKeyNumber)
+    addCurrentValue(pressKeyNumber)
     setNumberField(newNumberField(valueNumber))
     setPressKeyNumber('')
   }, [valueNumber, pressKeyNumber])
@@ -57,10 +56,10 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     const idKey = (event!.target as HTMLInputElement)!.id.split('')
     idKey.splice(-4, 4)
     const currentKey = idKey.join('')
-    setValue(currentKey)
+    addCurrentValue(currentKey)
   }
 
-  function setValue(currentKey: string) {
+  function addCurrentValue(currentKey: string) {
     if (
       valueNumber.length < 10 &&
       currentKey !== '10' &&
