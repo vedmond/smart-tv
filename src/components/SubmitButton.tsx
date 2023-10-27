@@ -9,6 +9,7 @@ export const SubmitButton = ({ handleOnFocus }: IProps) => {
       className={`btnVirtualKeyboard  ${
         handleOnFocus === 'submit-itm' ? 'handleOnFocus' : ''
       }`}
+      disabled={false}
     >
       ПОДТВЕРДИТЬ НОМЕР
     </button>

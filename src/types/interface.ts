@@ -13,6 +13,8 @@ export interface IProps {
   handleOnFocus?: string
   isChecked?: boolean
   numberField?: string
+  pressKeyArrow?: string
+  allEvents?: (string | boolean)[]
   onChangeCheckboxInput?: (event: any) => void
   onClickKey?: (event: any) => void
   onClickExit?: MouseEventHandler<HTMLButtonElement>

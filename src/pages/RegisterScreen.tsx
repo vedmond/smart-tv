@@ -9,17 +9,33 @@ import { CheckboxInput } from '../components/CheckboxInput'
 import { SubmitButton } from '../components/SubmitButton'
 import { ExitButton } from '../components/ExitButton'
 import { PhoneNumberField } from '../components/PhoneNumberField'
+import { useArrowNavigationTrace } from '../utils/useArrowNavigationTrace.hook'
 
 export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   const [valueNumber, setValueNumber] = useState('')
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [isFullField, setIsFullField] = useState<boolean>(false)
+  const [isNavigationArray, setIsNavigationArray] = useState<boolean>(true)
   const [pressKeyNumber, setPressKeyNumber] = useState<string>('')
   const [pressKeyArrow, setPressKeyArrow] = useState<string>('')
   const [pressKeyEnter, setPressKeyEnter] = useState<string>('')
+  const [mouseOnFocus, setMouseOnFocus] = useState<string>('')
   const [numberField, setNumberField] = useState(phoneNumberSample)
+  const handleOnFocus = useNavigationWithArrow(
+    pressKeyArrow,
+    setPressKeyArrow,
+    isNavigationArray,
+  )
 
-  const handleOnFocus = useNavigationWithArrow(pressKeyArrow, setPressKeyArrow)
+  const allEvents = [
+    valueNumber,
+    isChecked,
+    pressKeyNumber,
+    pressKeyEnter,
+    pressKeyArrow,
+  ]
+
+  const isArrowNavigation = useArrowNavigationTrace({ allEvents })
 
   useEffect(() => {
     const time = localStorage.getItem('videoTime')
@@ -35,11 +51,24 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   )
 
   useEffect(() => {
+    setIsNavigationArray(true)
     document.addEventListener('keyup', onKeyUpEvent)
+    // console.log('pressKeyEnter =', pressKeyEnter)
+    // console.log('mouseOnFocus = ', mouseOnFocus)
     return () => {
       document.removeEventListener('keyup', onKeyUpEvent)
     }
-  }, [onKeyUpEvent])
+  }, [onKeyUpEvent, pressKeyEnter, mouseOnFocus])
+
+  useEffect(() => {
+    const mouseEvent = (event: any) => {
+      if (event.isTrusted) setIsNavigationArray(false)
+    }
+    document.addEventListener('mousemove', mouseEvent)
+    return () => {
+      document.removeEventListener('mousemove', mouseEvent)
+    }
+  }, [])
 
   const addCurrentValue = useCallback(
     (currentKey: string) => {
@@ -70,11 +99,14 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   }, [valueNumber, pressKeyNumber, addCurrentValue])
 
   useEffect(() => {
+    console.log('pressKeyEnter =', pressKeyEnter)
+    console.log('currentMouseElement =', mouseOnFocus)
+    // setMouseOnFocus('')
+    const filterNumber = [...keyboardItems, '10']
+    const key = handleOnFocus.split('')
+    key.splice(-4, 4)
+    const currentKey = key.join('') ? key.join('') : mouseOnFocus
     if (pressKeyEnter) {
-      const filterNumber = [...keyboardItems, '10']
-      const key = handleOnFocus.split('')
-      key.splice(-4, 4)
-      const currentKey = key.join('')
       if (filterNumber.includes(currentKey)) {
         addCurrentValue(currentKey)
       }
@@ -92,13 +124,35 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
       }
     }
     setPressKeyEnter('')
-  }, [pressKeyEnter, handleOnFocus, isChecked, addCurrentValue])
+  }, [pressKeyEnter, handleOnFocus, isChecked, mouseOnFocus, addCurrentValue])
+
+  //****************************** */
+  useEffect(() => {
+    const mouseEventOver = (event: any) => {
+      const idElem = event.target.id.split('')
+      idElem.splice(-4, 4)
+      const currentMouseElement = idElem.join('')
+      // if (keyboardItems.includes(currentMouseElement)) {
+      //   // console.log('currentMouseElement =', currentMouseElement)
+      setMouseOnFocus(currentMouseElement)
+      // }
+    }
+    document.addEventListener('mouseover', mouseEventOver)
+    return () => {
+      document.removeEventListener('mouseover', mouseEventOver)
+    }
+  }, [])
+
+  //******************************* */
 
   const onClickExit = () => {
     if (setScreenName) setScreenName('promo')
   }
 
   const onClickKey = (event: any) => {
+    if (isArrowNavigation) {
+      return
+    }
     event.preventDefault()
     const idKey = (event!.target as HTMLInputElement)!.id.split('')
     idKey.splice(-4, 4)
@@ -124,6 +178,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
           <VirtualKeyboard
             onClickKey={onClickKey}
             handleOnFocus={handleOnFocus}
+            allEvents={allEvents}
           />
           <CheckboxInput
             handleOnFocus={handleOnFocus}

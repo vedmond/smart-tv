@@ -4,6 +4,7 @@ import { elementId } from '../constants'
 export const useNavigationWithArrow = (
   pressKeyArrow: string,
   setPressKeyArrow: any,
+  isNavigationArray: boolean,
 ) => {
   const [indexArr, setIndexArr] = useState<number>(0)
   const [indexElement, setIndexElement] = useState<number>(0)
@@ -80,6 +81,12 @@ export const useNavigationWithArrow = (
     indexElement,
     handleNavigation,
   ])
+  useEffect(() => {
+    setPressKeyArrow('')
+    setIndexElement(0)
+    setIndexArr(0)
+    setHandleOnFocus('')
+  }, [isNavigationArray])
 
   return handleOnFocus
 }

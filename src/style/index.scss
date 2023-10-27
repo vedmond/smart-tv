@@ -76,6 +76,7 @@ body {
       background-image: url(../assets/image/we_write.png);
       @extend %bg-position;
     }
+    .virtualKeyboardBlock__arrow,
     .virtualKeyboardBlock {
       width: 325px;
       height: 255px;
@@ -105,12 +106,19 @@ body {
         color: #fff;
       }
     }
-    .virtualKeyboardBlock div:hover {
-      box-shadow: -1px 0px 8px 1px rgba(34, 60, 80, 0.4);
+    .virtualKeyboardBlock__arrow {
+      .virtualKeyboardItems,
+      .virtualKeyboardItem__Backspace {
+        cursor: none;
+      }
     }
-    .virtualKeyboardBlock div:active {
+    .virtualKeyboardBlock div:hover {
       background-color: #070707;
       color: white;
+    }
+    .virtualKeyboardBlock div:active {
+      box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
+      border-radius: 2px;
     }
     .checkPersonalDataBlock {
       width: 275px;
@@ -182,11 +190,10 @@ body {
       color: #4e4e4e;
       background-color: #86d3f4;
       border: 2px solid #4e4e4e;
-      cursor: pointer;
     }
     button:hover {
-      background-color: #070707;
-      color: white;
+      // background-color: #070707;
+      // color: white;
     }
     .handleOnFocus {
       background: #000;

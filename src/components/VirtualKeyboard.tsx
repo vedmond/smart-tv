@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { keyboardItems } from '../constants'
 import { IProps } from '../types/interface'
+import { useArrowNavigationTrace } from '../utils/useArrowNavigationTrace.hook'
 
-export const VirtualKeyboard = ({ onClickKey, handleOnFocus }: IProps) => {
+export const VirtualKeyboard = ({
+  onClickKey,
+  handleOnFocus,
+  allEvents,
+}: IProps) => {
+  const isArrowNavigation = useArrowNavigationTrace({ allEvents })
+
   return (
-    <div className="virtualKeyboardBlock" id="keyboard-box">
+    <div
+      className={`${
+        isArrowNavigation
+          ? 'virtualKeyboardBlock__arrow'
+          : 'virtualKeyboardBlock'
+      }`}
+      id="keyboard-box"
+    >
       {keyboardItems.map((el, index) => (
         <div
           key={index}
@@ -13,7 +27,8 @@ export const VirtualKeyboard = ({ onClickKey, handleOnFocus }: IProps) => {
             el === 'стереть'
               ? 'virtualKeyboardItem__Backspace'
               : 'virtualKeyboardItems'
-          } ${
+          }
+          ${
             handleOnFocus === `${index === 10 ? 0 : index + 1}-key`
               ? 'handleOnFocus'
               : ''
