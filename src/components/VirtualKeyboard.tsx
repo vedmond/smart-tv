@@ -10,9 +10,12 @@ export const VirtualKeyboard = ({
   isCursor,
 }: IProps) => {
   const isArrowNavigation = useArrowNavigationTrace({ allEvents })
-
-  console.log('none =', isArrowNavigation || !isCursor)
-
+  console.log(
+    'isArrowNavigation =',
+    isArrowNavigation,
+    '!isCursor =',
+    !isCursor,
+  )
   return (
     <div
       className={`${

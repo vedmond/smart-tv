@@ -15,7 +15,15 @@ export interface IProps {
   numberField?: string
   pressKeyArrow?: string
   isCursor?: boolean
-  allEvents?: (string | boolean)[]
+  isPhoneNumberError?: boolean
+  allEvents?: {
+    valueNumber: string
+    isChecked: boolean
+    pressKeyNumber: string
+    pressKeyEnter: string
+    pressKeyArrow: string
+    mouseOnFocus: string
+  }
   onChangeCheckboxInput?: (event: any) => void
   onClickKey?: (event: any) => void
   onClickExit?: MouseEventHandler<HTMLButtonElement>

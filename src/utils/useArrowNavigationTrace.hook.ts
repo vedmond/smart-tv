@@ -6,6 +6,13 @@ export const useArrowNavigationTrace = ({ allEvents }: IProps) => {
   useEffect(() => {
     const onFocusElementStyle = document.getElementsByClassName('handleOnFocus')
     setIsArrowNavigation(!!onFocusElementStyle.length)
-  }, [allEvents])
+  }, [
+    allEvents?.valueNumber,
+    allEvents?.isChecked,
+    allEvents?.pressKeyArrow,
+    allEvents?.pressKeyEnter,
+    allEvents?.pressKeyNumber,
+    allEvents?.mouseOnFocus,
+  ])
   return isArrowNavigation
 }

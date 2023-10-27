@@ -17,6 +17,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   const [isFullField, setIsFullField] = useState<boolean>(false)
   const [isNavigationArray, setIsNavigationArray] = useState<boolean>(true)
   const [isCursor, setIsCursor] = useState<boolean>(true)
+  const [isPhoneNumberError, setIsPhoneNumberError] = useState<boolean>(false)
   const [pressKeyNumber, setPressKeyNumber] = useState<string>('')
   const [pressKeyArrow, setPressKeyArrow] = useState<string>('')
   const [pressKeyEnter, setPressKeyEnter] = useState<string>('')
@@ -28,13 +29,14 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     isNavigationArray,
   )
 
-  const allEvents = [
+  const allEvents = {
     valueNumber,
     isChecked,
     pressKeyNumber,
     pressKeyEnter,
     pressKeyArrow,
-  ]
+    mouseOnFocus,
+  }
 
   const isArrowNavigation = useArrowNavigationTrace({ allEvents })
 
@@ -61,9 +63,10 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
 
   useEffect(() => {
     const mouseEvent = (event: any) => {
+      setIsCursor(true)
+      setIsNavigationArray(false) // ? its need********
       if (event.isTrusted) {
         setIsNavigationArray(false)
-        setIsCursor(true)
       }
     }
     document.addEventListener('mousemove', mouseEvent)
@@ -74,6 +77,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
 
   const addCurrentValue = useCallback(
     (currentKey: string) => {
+      setIsPhoneNumberError(false)
       if (
         valueNumber.length < 10 &&
         currentKey !== '10' &&
@@ -90,7 +94,18 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
         const stringValueNumber = arrayValueNumber.join('')
         setValueNumber(stringValueNumber)
       }
-      valueNumber.length >= 10 ? setIsFullField(true) : setIsFullField(false)
+      if (valueNumber.length >= 10) {
+        if (
+          valueNumber.slice(3) === '0000000' ||
+          valueNumber.slice(0, 3) === '000'
+        ) {
+          setIsPhoneNumberError(true)
+          setIsFullField(false)
+          setIsChecked(false)
+        } else {
+          setIsFullField(true)
+        }
+      }
     },
     [valueNumber],
   )
@@ -108,7 +123,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     const key = handleOnFocus.split('')
     key.splice(-4, 4)
     const currentKey = key.join('') ? key.join('') : mouseOnFocus
-    if (pressKeyEnter && isCursor) {
+    if (pressKeyEnter) {
       if (filterNumber.includes(currentKey)) {
         addCurrentValue(currentKey)
       }
@@ -178,7 +193,11 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
       <form onSubmit={handleSubmit}>
         <div className="register">
           <div className="titleRegister"></div>
-          <PhoneNumberField numberField={numberField} onClickKey={onClickKey} />
+          <PhoneNumberField
+            numberField={numberField}
+            isPhoneNumberError={isPhoneNumberError}
+            onClickKey={onClickKey}
+          />
           <VirtualKeyboard
             onClickKey={onClickKey}
             handleOnFocus={handleOnFocus}
@@ -188,6 +207,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
           <CheckboxInput
             handleOnFocus={handleOnFocus}
             isChecked={isChecked}
+            isPhoneNumberError={isPhoneNumberError}
             onChangeCheckboxInput={onChangeCheckboxInput}
           />
           <SubmitButton handleOnFocus={handleOnFocus} />
