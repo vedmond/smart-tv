@@ -64,7 +64,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   useEffect(() => {
     const mouseEvent = (event: any) => {
       setIsCursor(true)
-      setIsNavigationArray(false) // ? its need********
+      setIsNavigationArray(false)
       if (event.isTrusted) {
         setIsNavigationArray(false)
       }

@@ -10,7 +10,7 @@ export const CheckboxInput = ({
   return (
     <>
       {isPhoneNumberError ? (
-        <div> text error </div>
+        <div className="number__error"></div>
       ) : (
         <div className="checkPersonalDataBlock">
           <div

@@ -120,6 +120,7 @@ body {
       box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
       border-radius: 2px;
     }
+    .number__error,
     .checkPersonalDataBlock {
       width: 275px;
       height: 50px;
@@ -181,6 +182,10 @@ body {
         background-image: url(../assets/image/are_you_right.png);
         @extend %bg-position;
       }
+    }
+    .number__error {
+      background-image: url(../assets/image/number_error.png);
+      @extend %bg-position;
     }
     .btnVirtualKeyboard {
       width: 200px;
