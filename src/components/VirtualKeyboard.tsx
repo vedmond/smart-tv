@@ -7,14 +7,17 @@ export const VirtualKeyboard = ({
   onClickKey,
   handleOnFocus,
   allEvents,
+  isCursor,
 }: IProps) => {
   const isArrowNavigation = useArrowNavigationTrace({ allEvents })
+
+  console.log('none =', isArrowNavigation || !isCursor)
 
   return (
     <div
       className={`${
-        isArrowNavigation
-          ? 'virtualKeyboardBlock__arrow'
+        isArrowNavigation || !isCursor
+          ? 'virtualKeyboardBlock__none'
           : 'virtualKeyboardBlock'
       }`}
       id="keyboard-box"

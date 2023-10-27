@@ -16,6 +16,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [isFullField, setIsFullField] = useState<boolean>(false)
   const [isNavigationArray, setIsNavigationArray] = useState<boolean>(true)
+  const [isCursor, setIsCursor] = useState<boolean>(true)
   const [pressKeyNumber, setPressKeyNumber] = useState<string>('')
   const [pressKeyArrow, setPressKeyArrow] = useState<string>('')
   const [pressKeyEnter, setPressKeyEnter] = useState<string>('')
@@ -53,16 +54,17 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   useEffect(() => {
     setIsNavigationArray(true)
     document.addEventListener('keyup', onKeyUpEvent)
-    // console.log('pressKeyEnter =', pressKeyEnter)
-    // console.log('mouseOnFocus = ', mouseOnFocus)
     return () => {
       document.removeEventListener('keyup', onKeyUpEvent)
     }
-  }, [onKeyUpEvent, pressKeyEnter, mouseOnFocus])
+  }, [onKeyUpEvent])
 
   useEffect(() => {
     const mouseEvent = (event: any) => {
-      if (event.isTrusted) setIsNavigationArray(false)
+      if (event.isTrusted) {
+        setIsNavigationArray(false)
+        setIsCursor(true)
+      }
     }
     document.addEventListener('mousemove', mouseEvent)
     return () => {
@@ -93,20 +95,20 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     [valueNumber],
   )
   useEffect(() => {
+    if (pressKeyNumber) {
+      setIsCursor(false)
+    }
     addCurrentValue(pressKeyNumber)
     setNumberField(newNumberField(valueNumber))
     setPressKeyNumber('')
   }, [valueNumber, pressKeyNumber, addCurrentValue])
 
   useEffect(() => {
-    console.log('pressKeyEnter =', pressKeyEnter)
-    console.log('currentMouseElement =', mouseOnFocus)
-    // setMouseOnFocus('')
     const filterNumber = [...keyboardItems, '10']
     const key = handleOnFocus.split('')
     key.splice(-4, 4)
     const currentKey = key.join('') ? key.join('') : mouseOnFocus
-    if (pressKeyEnter) {
+    if (pressKeyEnter && isCursor) {
       if (filterNumber.includes(currentKey)) {
         addCurrentValue(currentKey)
       }
@@ -124,18 +126,22 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
       }
     }
     setPressKeyEnter('')
-  }, [pressKeyEnter, handleOnFocus, isChecked, mouseOnFocus, addCurrentValue])
+  }, [
+    pressKeyEnter,
+    handleOnFocus,
+    isChecked,
+    mouseOnFocus,
+    isCursor,
+    addCurrentValue,
+  ])
 
-  //****************************** */
   useEffect(() => {
     const mouseEventOver = (event: any) => {
       const idElem = event.target.id.split('')
       idElem.splice(-4, 4)
       const currentMouseElement = idElem.join('')
-      // if (keyboardItems.includes(currentMouseElement)) {
-      //   // console.log('currentMouseElement =', currentMouseElement)
+
       setMouseOnFocus(currentMouseElement)
-      // }
     }
     document.addEventListener('mouseover', mouseEventOver)
     return () => {
@@ -143,14 +149,12 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     }
   }, [])
 
-  //******************************* */
-
   const onClickExit = () => {
     if (setScreenName) setScreenName('promo')
   }
 
   const onClickKey = (event: any) => {
-    if (isArrowNavigation) {
+    if (isArrowNavigation || !isCursor) {
       return
     }
     event.preventDefault()
@@ -178,6 +182,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
           <VirtualKeyboard
             onClickKey={onClickKey}
             handleOnFocus={handleOnFocus}
+            isCursor={isCursor}
             allEvents={allEvents}
           />
           <CheckboxInput

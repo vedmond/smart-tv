@@ -14,6 +14,7 @@ export interface IProps {
   isChecked?: boolean
   numberField?: string
   pressKeyArrow?: string
+  isCursor?: boolean
   allEvents?: (string | boolean)[]
   onChangeCheckboxInput?: (event: any) => void
   onClickKey?: (event: any) => void

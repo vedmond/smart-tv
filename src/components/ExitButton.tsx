@@ -11,7 +11,7 @@ export const ExitButton = ({ handleOnFocus, onClickExit }: IProps) => {
       }`}
       onClick={onClickExit}
     >
-      <AiOutlineClose />
+      <AiOutlineClose id="exit-ico" />
     </button>
   )
 }

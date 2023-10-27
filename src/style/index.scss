@@ -76,7 +76,7 @@ body {
       background-image: url(../assets/image/we_write.png);
       @extend %bg-position;
     }
-    .virtualKeyboardBlock__arrow,
+    .virtualKeyboardBlock__none,
     .virtualKeyboardBlock {
       width: 325px;
       height: 255px;
@@ -106,7 +106,7 @@ body {
         color: #fff;
       }
     }
-    .virtualKeyboardBlock__arrow {
+    .virtualKeyboardBlock__none {
       .virtualKeyboardItems,
       .virtualKeyboardItem__Backspace {
         cursor: none;
