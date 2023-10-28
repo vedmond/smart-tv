@@ -37,6 +37,7 @@ body {
     background-color: black;
     color: white;
   }
+  .finally,
   .register {
     width: 365px;
     height: 720px;
@@ -213,6 +214,14 @@ body {
       &.handleOnFocus {
         box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
       }
+    }
+  }
+  .finally {
+    .finally__text {
+      width: 250px;
+      height: 100px;
+      background-image: url(../assets/image/finally_text.png);
+      @extend %bg-position;
     }
   }
 }
