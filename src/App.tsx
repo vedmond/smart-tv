@@ -12,14 +12,6 @@ function App() {
     const currentPlayerTime = 0
     localStorage.setItem('videoTime', currentPlayerTime.toString())
   }, [])
-  useEffect(() => {
-    if (screenName === 'finally') {
-      const currentPlayerTime = 0
-      localStorage.setItem('videoTime', currentPlayerTime.toString())
-    }
-  }, [screenName])
-
-  console.log('screenName =', screenName)
 
   return (
     <div className="App">

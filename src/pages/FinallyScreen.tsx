@@ -6,6 +6,8 @@ import { timeToLogoutSec } from '../constants'
 
 export const FinallyScreen = ({ setScreenName }: IProps) => {
   const handleOnFocus = 'exit-itm'
+  const currentPlayerTime = 0
+  localStorage.setItem('videoTime', currentPlayerTime.toString())
   const { resetTimeoutTime } = useDetectActivity({
     timeToLogoutSec,
     setScreenName,

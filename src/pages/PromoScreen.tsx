@@ -32,24 +32,23 @@ export const PromoScreen = ({
   }
   return (
     <>
-      {currentPlayerTime && (
-        <ReactPlayer
-          {...playerSettings}
-          playing={true}
-          config={{
-            youtube: {
-              playerVars: {
-                showinfo: 0,
-                start: `${currentPlayerTime}`,
-                rel: '0',
-                modestbranding: 1,
-              },
+      <ReactPlayer
+        {...playerSettings}
+        playing={true}
+        config={{
+          youtube: {
+            playerVars: {
+              showinfo: 0,
+              start: `${currentPlayerTime}`,
+              rel: '0',
+              modestbranding: 1,
             },
-          }}
-          // onStart={() => setIsStart(true)}
-          onProgress={videoPlaybackTime}
-        />
-      )}
+          },
+        }}
+        // onStart={() => setIsStart(true)}
+        onProgress={videoPlaybackTime}
+      />
+
       <Curtain isVisible={isVisibleBanner} setScreenName={setScreenName} />
     </>
   )
