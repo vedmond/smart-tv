@@ -18,6 +18,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   const [isNavigationArray, setIsNavigationArray] = useState<boolean>(true)
   const [isCursor, setIsCursor] = useState<boolean>(true)
   const [isPhoneNumberError, setIsPhoneNumberError] = useState<boolean>(false)
+  const [isEnabledSubmit, setIsEnabledSubmit] = useState<boolean>(false)
   const [pressKeyNumber, setPressKeyNumber] = useState<string>('')
   const [pressKeyArrow, setPressKeyArrow] = useState<string>('')
   const [pressKeyEnter, setPressKeyEnter] = useState<string>('')
@@ -75,9 +76,18 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     }
   }, [])
 
+  useEffect(() => {
+    if (isFullField && isChecked) {
+      setIsEnabledSubmit(true)
+    } else {
+      setIsEnabledSubmit(false)
+    }
+  }, [isFullField, isChecked])
+
   const addCurrentValue = useCallback(
     (currentKey: string) => {
       setIsPhoneNumberError(false)
+      setIsEnabledSubmit(false)
       if (
         valueNumber.length < 10 &&
         currentKey !== '10' &&
@@ -104,6 +114,9 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
           setIsChecked(false)
         } else {
           setIsFullField(true)
+        }
+        if (isFullField && isChecked) {
+          setIsEnabledSubmit(true)
         }
       }
     },
@@ -184,7 +197,9 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   }
 
   function handleSubmit(event?: any) {
-    if (isChecked && isFullField) console.log('submit')
+    if (isChecked && isFullField) {
+      if (setScreenName) setScreenName('finally')
+    }
     event?.preventDefault()
   }
 
@@ -210,7 +225,10 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
             isPhoneNumberError={isPhoneNumberError}
             onChangeCheckboxInput={onChangeCheckboxInput}
           />
-          <SubmitButton handleOnFocus={handleOnFocus} />
+          <SubmitButton
+            handleOnFocus={handleOnFocus}
+            isEnabledSubmit={isEnabledSubmit}
+          />
         </div>
       </form>
 

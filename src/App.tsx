@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { PromoScreen } from './pages/PromoScreen'
 import { RegisterScreen } from './pages/RegisterScreen'
+import { FinallyScreen } from './pages/FinallyScreen'
 
 function App() {
   const [playerTime, setPlayerTime] = useState<number>(0)
@@ -18,6 +19,12 @@ function App() {
       )}
       {screenName === 'register' && (
         <RegisterScreen
+          setScreenName={setScreenName}
+          setPlayerTime={setPlayerTime}
+        />
+      )}
+      {screenName === 'finally' && (
+        <FinallyScreen
           setScreenName={setScreenName}
           setPlayerTime={setPlayerTime}
         />

@@ -1,15 +1,15 @@
 import React from 'react'
 import { IProps } from '../types/interface'
 
-export const SubmitButton = ({ handleOnFocus }: IProps) => {
+export const SubmitButton = ({ handleOnFocus, isEnabledSubmit }: IProps) => {
   return (
     <button
       id="submit-itm"
       type="submit"
-      className={`btnVirtualKeyboard  ${
-        handleOnFocus === 'submit-itm' ? 'handleOnFocus' : ''
-      }`}
-      disabled={false}
+      className={`${
+        isEnabledSubmit ? 'btnVirtualKeyboard__enabled' : 'btnVirtualKeyboard'
+      }  ${handleOnFocus === 'submit-itm' ? 'handleOnFocus' : ''}`}
+      disabled={!isEnabledSubmit}
     >
       ПОДТВЕРДИТЬ НОМЕР
     </button>

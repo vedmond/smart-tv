@@ -16,6 +16,7 @@ body {
   height: 720px;
   border: 1px solid red;
   position: relative;
+  overflow: hidden;
   background-image: url(../assets/image/bg_and_promo.png);
   @extend %bg-position;
   .btnExit {
@@ -47,10 +48,13 @@ body {
     input[type='text'] {
       width: 310px;
       height: 50px;
+      position: absolute;
+      top: 0px;
+      left: -400px;
       font-size: 35px;
       font-weight: 700;
       color: #070707;
-      background-color: #86d3f4 !important;
+      background-color: #86d3f4;
       border: 1px solid red;
     }
     input::placeholder {
@@ -187,6 +191,7 @@ body {
       background-image: url(../assets/image/number_error.png);
       @extend %bg-position;
     }
+    .btnVirtualKeyboard__enabled,
     .btnVirtualKeyboard {
       width: 200px;
       height: 50px;
@@ -196,14 +201,18 @@ body {
       background-color: #86d3f4;
       border: 2px solid #4e4e4e;
     }
-    button:hover {
-      // background-color: #070707;
-      // color: white;
-    }
-    .handleOnFocus {
-      background: #000;
-      color: #fff;
-      border: 2px solid #000;
+    .btnVirtualKeyboard__enabled {
+      color: white;
+      border: 2px solid #070707;
+      background-color: #070707;
+
+      cursor: pointer;
+      &:hover {
+        box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
+      }
+      &.handleOnFocus {
+        box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
+      }
     }
   }
 }

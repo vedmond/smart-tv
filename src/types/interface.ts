@@ -16,6 +16,7 @@ export interface IProps {
   pressKeyArrow?: string
   isCursor?: boolean
   isPhoneNumberError?: boolean
+  isEnabledSubmit?: boolean
   allEvents?: {
     valueNumber: string
     isChecked: boolean

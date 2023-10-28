@@ -14,9 +14,13 @@ export const PhoneNumberField = ({
         value={numberField}
         placeholder={phoneNumberSample}
         onChange={onClickKey}
-        tabIndex={-1}
-        style={isPhoneNumberError ? { color: 'red' } : undefined}
       />
+      <div
+        className="phoneNumberBlock"
+        style={isPhoneNumberError ? { color: 'red' } : undefined}
+      >
+        {numberField}
+      </div>
       <div className="textRegister"></div>
     </>
   )
