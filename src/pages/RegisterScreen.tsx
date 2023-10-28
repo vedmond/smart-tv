@@ -12,7 +12,7 @@ import { PhoneNumberField } from '../components/PhoneNumberField'
 import { useArrowNavigationTrace } from '../utils/useArrowNavigationTrace.hook'
 import { useDetectActivity } from '../utils/useDetectActivity'
 
-export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
+export const RegisterScreen = ({ setScreenName }: IProps) => {
   const [valueNumber, setValueNumber] = useState('')
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [isFullField, setIsFullField] = useState<boolean>(false)
@@ -41,23 +41,16 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     mouseOnFocus,
   }
 
-  const { resetTimeoutTime } = useDetectActivity({
-    timeToLogoutSec,
-    setScreenName,
-  })
+  // const { resetTimeoutTime } = useDetectActivity({
+  //   timeToLogoutSec,
+  //   setScreenName,
+  // })
 
   useEffect(() => {
-    resetTimeoutTime()
+    // resetTimeoutTime()                             // потом включить
   }, [valueNumber, isChecked, pressKeyNumber, pressKeyEnter, pressKeyArrow])
 
   const isArrowNavigation = useArrowNavigationTrace({ allEvents })
-
-  useEffect(() => {
-    const time = localStorage.getItem('videoTime')
-    if (time) {
-      if (setPlayerTime) setPlayerTime(Number(time))
-    }
-  }, [])
 
   const onKeyUpEvent = keyEventFilter(
     setPressKeyNumber,

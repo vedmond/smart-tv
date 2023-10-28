@@ -1,4 +1,3 @@
-import React from 'react'
 import { IProps } from '../types/interface'
 import { Banner } from './Banner'
 

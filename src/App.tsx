@@ -1,33 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PromoScreen } from './pages/PromoScreen'
 import { RegisterScreen } from './pages/RegisterScreen'
 import { FinallyScreen } from './pages/FinallyScreen'
 
 function App() {
-  const [playerTime, setPlayerTime] = useState<number>(0)
   const [screenName, setScreenName] = useState<
     'promo' | 'register' | 'finally'
-  >('register')
+  >('promo')
+
+  useEffect(() => {
+    const currentPlayerTime = 0
+    localStorage.setItem('videoTime', currentPlayerTime.toString())
+  }, [])
+  useEffect(() => {
+    if (screenName === 'finally') {
+      const currentPlayerTime = 0
+      localStorage.setItem('videoTime', currentPlayerTime.toString())
+    }
+  }, [screenName])
+
+  console.log('screenName =', screenName)
+
   return (
     <div className="App">
-      {screenName === 'promo' && (
-        <PromoScreen
-          setScreenName={setScreenName}
-          setPlayerTime={setPlayerTime}
-          playerTime={playerTime}
-        />
-      )}
+      {screenName === 'promo' && <PromoScreen setScreenName={setScreenName} />}
       {screenName === 'register' && (
-        <RegisterScreen
-          setScreenName={setScreenName}
-          setPlayerTime={setPlayerTime}
-        />
+        <RegisterScreen setScreenName={setScreenName} />
       )}
       {screenName === 'finally' && (
-        <FinallyScreen
-          setScreenName={setScreenName}
-          setPlayerTime={setPlayerTime}
-        />
+        <FinallyScreen setScreenName={setScreenName} />
       )}
     </div>
   )
