@@ -34,7 +34,7 @@ export const PromoScreen = ({
   // }, [playerTime])
 
   const videoPlaybackTime = (progress: OnProgressProps) => {
-    console.log(Math.round(progress.playedSeconds))
+    // console.log(Math.round(progress.playedSeconds))
     localStorage.setItem(
       'videoTime',
       JSON.stringify(Math.round(progress.playedSeconds)),
@@ -42,12 +42,12 @@ export const PromoScreen = ({
     if (Math.round(progress.playedSeconds) >= 5) {
       setIsVisibleBanner(true)
     }
-    if (Math.round(progress.playedSeconds) >= 76) {
-      setIsVisibleBanner(false)
-      // localStorage.setItem('videoTime', JSON.stringify(0))
-      // if (setPlayerTime) setPlayerTime(0)
-      // причина в том что нужно вызывать перерендер
-    }
+    // if (Math.round(progress.playedSeconds) >= 76) {
+    //   setIsVisibleBanner(false)
+    // localStorage.setItem('videoTime', JSON.stringify(0))
+    // if (setPlayerTime) setPlayerTime(0)
+    // причина в том что нужно вызывать перерендер
+    // }
   }
   return (
     <>

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { IProps } from '../types/interface'
-import { keyboardItems, phoneNumberSample } from '../constants'
+import { keyboardItems, phoneNumberSample, timeToLogoutSec } from '../constants'
 import { newNumberField } from '../utils/newNumberField'
 import { VirtualKeyboard } from '../components/VirtualKeyboard'
 import { keyEventFilter } from '../utils/keyEventFilter'
@@ -10,6 +10,7 @@ import { SubmitButton } from '../components/SubmitButton'
 import { ExitButton } from '../components/ExitButton'
 import { PhoneNumberField } from '../components/PhoneNumberField'
 import { useArrowNavigationTrace } from '../utils/useArrowNavigationTrace.hook'
+import { useDetectActivity } from '../utils/useDetectActivity'
 
 export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   const [valueNumber, setValueNumber] = useState('')
@@ -24,6 +25,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   const [pressKeyEnter, setPressKeyEnter] = useState<string>('')
   const [mouseOnFocus, setMouseOnFocus] = useState<string>('')
   const [numberField, setNumberField] = useState(phoneNumberSample)
+
   const handleOnFocus = useNavigationWithArrow(
     pressKeyArrow,
     setPressKeyArrow,
@@ -39,6 +41,15 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     mouseOnFocus,
   }
 
+  const { resetTimeoutTime } = useDetectActivity({
+    timeToLogoutSec,
+    setScreenName,
+  })
+
+  useEffect(() => {
+    resetTimeoutTime()
+  }, [valueNumber, isChecked, pressKeyNumber, pressKeyEnter, pressKeyArrow])
+
   const isArrowNavigation = useArrowNavigationTrace({ allEvents })
 
   useEffect(() => {
@@ -46,7 +57,7 @@ export const RegisterScreen = ({ setScreenName, setPlayerTime }: IProps) => {
     if (time) {
       if (setPlayerTime) setPlayerTime(Number(time))
     }
-  }, [setPlayerTime])
+  }, [])
 
   const onKeyUpEvent = keyEventFilter(
     setPressKeyNumber,

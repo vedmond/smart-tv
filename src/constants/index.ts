@@ -35,3 +35,5 @@ export const elementId = [
   ['1-key', '2-key', '3-key'],
   ['exit-itm'],
 ]
+
+export const timeToLogoutSec = 10

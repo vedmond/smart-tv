@@ -25,6 +25,7 @@ export interface IProps {
     pressKeyArrow: string
     mouseOnFocus: string
   }
+  timeToLogoutSec?: number
   onChangeCheckboxInput?: (event: any) => void
   onClickKey?: (event: any) => void
   onClickExit?: MouseEventHandler<HTMLButtonElement>

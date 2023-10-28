@@ -1,10 +1,20 @@
 import React, { useEffect } from 'react'
 import { IProps } from '../types/interface'
 import { ExitButton } from '../components/ExitButton'
-import { keyEventFilter } from '../utils/keyEventFilter'
+import { useDetectActivity } from '../utils/useDetectActivity'
+import { timeToLogoutSec } from '../constants'
 
 export const FinallyScreen = ({ setScreenName, setPlayerTime }: IProps) => {
   const handleOnFocus = 'exit-itm'
+  const { resetTimeoutTime } = useDetectActivity({
+    timeToLogoutSec,
+    setScreenName,
+  })
+
+  useEffect(() => {
+    resetTimeoutTime()
+  }, [])
+
   useEffect(() => {
     const onKeyUpEvent = (event: any) => {
       if (event.key === 'Enter') {
@@ -16,6 +26,7 @@ export const FinallyScreen = ({ setScreenName, setPlayerTime }: IProps) => {
       document.removeEventListener('keyup', onKeyUpEvent)
     }
   }, [])
+
   if (setPlayerTime) setPlayerTime(0)
 
   const onClickExit = () => {
