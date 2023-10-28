@@ -17,7 +17,7 @@ export const PromoScreen = ({
   setPlayerTime,
   playerTime = 0,
 }: IProps) => {
-  // const [isStart, setIsStart] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isVisibleBanner, setIsVisibleBanner] = useState<boolean>(false)
   const currentPlayerTime = localStorage.getItem('videoTime')
 
@@ -45,11 +45,15 @@ export const PromoScreen = ({
             },
           },
         }}
-        // onStart={() => setIsStart(true)}
+        onStart={() => setIsLoading(false)}
         onProgress={videoPlaybackTime}
       />
 
-      <Curtain isVisible={isVisibleBanner} setScreenName={setScreenName} />
+      <Curtain
+        isVisible={isVisibleBanner}
+        setScreenName={setScreenName}
+        isLoading={isLoading}
+      />
     </>
   )
 }

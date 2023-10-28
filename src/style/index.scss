@@ -233,6 +233,7 @@ body {
     }
   }
 }
+.playerCurtain__loading,
 .playerCurtain {
   position: absolute;
   top: 0;
@@ -241,6 +242,7 @@ body {
   height: 720px;
   background: rgba(216, 230, 237, 0);
   overflow: hidden;
+  display: flex;
   .banner {
     position: absolute;
     top: 210px;
@@ -286,4 +288,7 @@ body {
       cursor: pointer;
     }
   }
+}
+.playerCurtain__loading {
+  background: rgba(216, 230, 237, 1);
 }

@@ -17,6 +17,7 @@ export interface IProps {
   isCursor?: boolean
   isPhoneNumberError?: boolean
   isEnabledSubmit?: boolean
+  isLoading?: boolean
   allEvents?: {
     valueNumber: string
     isChecked: boolean
