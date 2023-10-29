@@ -1,4 +1,4 @@
-import React, { Dispatch, useEffect } from 'react'
+import React, { Dispatch } from 'react'
 import { arrowItems, keyboardItems } from '../constants'
 
 export const keyEventFilter = (

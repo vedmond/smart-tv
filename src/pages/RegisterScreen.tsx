@@ -46,7 +46,14 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
   })
   useEffect(() => {
     resetTimeoutTime()
-  }, [valueNumber, isChecked, pressKeyNumber, pressKeyEnter, pressKeyArrow])
+  }, [
+    valueNumber,
+    isChecked,
+    pressKeyNumber,
+    pressKeyEnter,
+    pressKeyArrow,
+    resetTimeoutTime,
+  ])
 
   const onKeyUpEvent = keyEventFilter(
     setPressKeyNumber,
@@ -84,6 +91,16 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
     }
   }, [isFullField, isChecked])
 
+  const handleSubmit = useCallback(
+    (event?: React.SyntheticEvent) => {
+      if (isChecked && isFullField) {
+        if (setScreenName) setScreenName('finally')
+      }
+      event?.preventDefault()
+    },
+    [isChecked, isFullField, setScreenName],
+  )
+
   const addCurrentValue = useCallback(
     (currentKey: string) => {
       setIsPhoneNumberError(false)
@@ -120,7 +137,7 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
         }
       }
     },
-    [valueNumber],
+    [valueNumber, isFullField, isChecked],
   )
   useEffect(() => {
     if (pressKeyNumber) {
@@ -161,6 +178,8 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
     mouseOnFocus,
     isCursor,
     addCurrentValue,
+    handleSubmit,
+    setScreenName,
   ])
 
   useEffect(() => {
@@ -181,7 +200,7 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
     if (setScreenName) setScreenName('promo')
   }
 
-  const onClickKey = (event: any) => {
+  const onClickKey = (event: React.SyntheticEvent) => {
     if (isArrowNavigation || !isCursor) {
       return
     }
@@ -194,13 +213,6 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
 
   const onChangeCheckboxInput = () => {
     setIsChecked(!isChecked)
-  }
-
-  function handleSubmit(event?: any) {
-    if (isChecked && isFullField) {
-      if (setScreenName) setScreenName('finally')
-    }
-    event?.preventDefault()
   }
 
   return (

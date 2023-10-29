@@ -15,7 +15,7 @@ export const FinallyScreen = ({ setScreenName }: IProps) => {
 
   useEffect(() => {
     resetTimeoutTime()
-  }, [])
+  }, [resetTimeoutTime])
 
   useEffect(() => {
     const onKeyUpEvent = (event: any) => {
@@ -27,7 +27,7 @@ export const FinallyScreen = ({ setScreenName }: IProps) => {
     return () => {
       document.removeEventListener('keyup', onKeyUpEvent)
     }
-  }, [])
+  }, [setScreenName])
 
   const onClickExit = () => {
     if (setScreenName) setScreenName('promo')
