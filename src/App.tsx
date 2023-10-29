@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PromoScreen } from './pages/PromoScreen'
 import { RegisterScreen } from './pages/RegisterScreen'
 import { FinallyScreen } from './pages/FinallyScreen'
 
 function App() {
+  const [isTimePlayerToggle, setIsTimePlayerToggle] = useState(false)
   const [screenName, setScreenName] = useState<
-    'promo' | 'register' | 'finally' | ''
-  >('')
+    'promo' | 'register' | 'finally'
+  >('promo')
 
   useEffect(() => {
-    const currentPlayerTime = 0
-    localStorage.setItem('videoTime', currentPlayerTime.toString())
-    setScreenName('promo')
+    setIsTimePlayerToggle(true)
   }, [])
 
   return (
     <div className="App">
-      {screenName === 'promo' && <PromoScreen setScreenName={setScreenName} />}
+      {screenName === 'promo' && (
+        <PromoScreen
+          setScreenName={setScreenName}
+          isTimePlayerToggle={isTimePlayerToggle}
+        />
+      )}
       {screenName === 'register' && (
         <RegisterScreen setScreenName={setScreenName} />
       )}

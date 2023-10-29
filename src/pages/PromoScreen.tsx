@@ -4,10 +4,13 @@ import { IProps, OnProgressProps } from '../types/interface'
 import { playerSettings } from '../constants/'
 import { Curtain } from '../components/Curtain'
 
-export const PromoScreen = ({ setScreenName }: IProps) => {
+export const PromoScreen = ({ setScreenName, isTimePlayerToggle }: IProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isVisibleBanner, setIsVisibleBanner] = useState<boolean>(false)
-  const currentPlayerTime = localStorage.getItem('videoTime')
+
+  const currentPlayerTime = isTimePlayerToggle
+    ? localStorage.getItem('videoTime')
+    : '0'
 
   const videoPlaybackTime = (progress: OnProgressProps) => {
     localStorage.setItem(

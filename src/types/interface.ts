@@ -18,6 +18,7 @@ export interface IProps {
   isPhoneNumberError?: boolean
   isEnabledSubmit?: boolean
   isLoading?: boolean
+  isTimePlayerToggle?: boolean
   allEvents?: {
     valueNumber: string
     isChecked: boolean
@@ -30,8 +31,6 @@ export interface IProps {
   onChangeCheckboxInput?: (event: any) => void
   onClickKey?: (event: any) => void
   onClickExit?: MouseEventHandler<HTMLButtonElement>
-  setScreenName?: Dispatch<
-    SetStateAction<'promo' | 'register' | 'finally' | ''>
-  >
+  setScreenName?: Dispatch<SetStateAction<'promo' | 'register' | 'finally'>>
   setPlayerTime?: Dispatch<SetStateAction<number>>
 }
