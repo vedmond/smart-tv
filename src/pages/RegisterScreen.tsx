@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { IProps } from '../types/interface'
 import { keyboardItems, phoneNumberSample, timeToLogoutSec } from '../constants'
 import { newNumberField } from '../utils/newNumberField'
@@ -26,12 +26,6 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
   const [mouseOnFocus, setMouseOnFocus] = useState<string>('')
   const [numberField, setNumberField] = useState(phoneNumberSample)
 
-  const handleOnFocus = useNavigationWithArrow(
-    pressKeyArrow,
-    setPressKeyArrow,
-    isNavigationArray,
-  )
-
   const allEvents = {
     valueNumber,
     isChecked,
@@ -40,17 +34,19 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
     pressKeyArrow,
     mouseOnFocus,
   }
-
-  // const { resetTimeoutTime } = useDetectActivity({
-  //   timeToLogoutSec,
-  //   setScreenName,
-  // })
-
-  useEffect(() => {
-    // resetTimeoutTime()                             // потом включить
-  }, [valueNumber, isChecked, pressKeyNumber, pressKeyEnter, pressKeyArrow])
-
   const isArrowNavigation = useArrowNavigationTrace({ allEvents })
+  const handleOnFocus = useNavigationWithArrow(
+    pressKeyArrow,
+    setPressKeyArrow,
+    isNavigationArray,
+  )
+  const { resetTimeoutTime } = useDetectActivity({
+    timeToLogoutSec,
+    setScreenName,
+  })
+  useEffect(() => {
+    resetTimeoutTime()
+  }, [valueNumber, isChecked, pressKeyNumber, pressKeyEnter, pressKeyArrow])
 
   const onKeyUpEvent = keyEventFilter(
     setPressKeyNumber,
@@ -235,7 +231,6 @@ export const RegisterScreen = ({ setScreenName }: IProps) => {
           />
         </div>
       </form>
-
       <ExitButton handleOnFocus={handleOnFocus} onClickExit={onClickExit} />
     </>
   )

@@ -5,12 +5,13 @@ import { FinallyScreen } from './pages/FinallyScreen'
 
 function App() {
   const [screenName, setScreenName] = useState<
-    'promo' | 'register' | 'finally'
-  >('promo')
+    'promo' | 'register' | 'finally' | ''
+  >('')
 
   useEffect(() => {
     const currentPlayerTime = 0
     localStorage.setItem('videoTime', currentPlayerTime.toString())
+    setScreenName('promo')
   }, [])
 
   return (

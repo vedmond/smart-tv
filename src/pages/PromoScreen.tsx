@@ -1,22 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import ReactPlayer from 'react-player'
 import { IProps, OnProgressProps } from '../types/interface'
 import { playerSettings } from '../constants/'
-import { Banner } from '../components/Banner'
 import { Curtain } from '../components/Curtain'
 
-// interface IYoutubeState {
-//   showinfo: number
-//   start: string
-//   rel: string
-//   modestbranding: number
-// }
-
-export const PromoScreen = ({
-  setScreenName,
-  setPlayerTime,
-  playerTime = 0,
-}: IProps) => {
+export const PromoScreen = ({ setScreenName }: IProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isVisibleBanner, setIsVisibleBanner] = useState<boolean>(false)
   const currentPlayerTime = localStorage.getItem('videoTime')
@@ -48,7 +36,6 @@ export const PromoScreen = ({
         onStart={() => setIsLoading(false)}
         onProgress={videoPlaybackTime}
       />
-
       <Curtain
         isVisible={isVisibleBanner}
         setScreenName={setScreenName}

@@ -30,6 +30,8 @@ export interface IProps {
   onChangeCheckboxInput?: (event: any) => void
   onClickKey?: (event: any) => void
   onClickExit?: MouseEventHandler<HTMLButtonElement>
-  setScreenName?: Dispatch<SetStateAction<'promo' | 'register' | 'finally'>>
+  setScreenName?: Dispatch<
+    SetStateAction<'promo' | 'register' | 'finally' | ''>
+  >
   setPlayerTime?: Dispatch<SetStateAction<number>>
 }
