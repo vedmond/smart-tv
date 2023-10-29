@@ -19,6 +19,7 @@
 Использованы библиотеки:
 
 Для работы с видео [react-player](https://www.npmjs.com/package/react-player)
+
 Для анимации при загрузке [Ant Design](https://ant.design/)
 
 ---
