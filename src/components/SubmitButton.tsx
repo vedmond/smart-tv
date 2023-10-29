@@ -1,4 +1,3 @@
-import React from 'react'
 import { IProps } from '../types/interface'
 
 export const SubmitButton = ({ handleOnFocus, isEnabledSubmit }: IProps) => {

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { keyboardItems } from '../constants'
 import { IProps } from '../types/interface'
 import { useArrowNavigationTrace } from '../utils/useArrowNavigationTrace.hook'

@@ -14,7 +14,6 @@ body {
   margin: auto;
   width: 1280px;
   height: 720px;
-  border: 1px solid red;
   position: relative;
   overflow: hidden;
   background-image: url(../assets/image/bg_and_promo.png);
@@ -56,7 +55,6 @@ body {
       font-weight: 700;
       color: #070707;
       background-color: #86d3f4;
-      border: 1px solid red;
     }
     input::placeholder {
       color: #070707;
@@ -71,7 +69,6 @@ body {
     .phoneNumberBlock {
       width: 310px;
       height: 50px;
-      border: 1px solid red;
       font-size: 35px;
       font-weight: 700;
     }
@@ -89,7 +86,6 @@ body {
       flex-direction: row;
       flex-wrap: wrap;
       gap: 5px;
-      border: 1px solid red;
       .virtualKeyboardItems,
       .virtualKeyboardItem__Backspace {
         width: 90px;
@@ -129,7 +125,6 @@ body {
     .checkPersonalDataBlock {
       width: 275px;
       height: 50px;
-      border: 1px solid red;
       display: flex;
       flex-direction: row;
       justify-content: space-around;

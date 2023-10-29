@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { IProps } from '../types/interface'
 import { ExitButton } from '../components/ExitButton'
 import { useDetectActivity } from '../utils/useDetectActivity'

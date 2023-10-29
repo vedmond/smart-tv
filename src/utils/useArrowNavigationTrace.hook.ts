@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IProps } from '../types/interface'
 
 export const useArrowNavigationTrace = ({ allEvents }: IProps) => {

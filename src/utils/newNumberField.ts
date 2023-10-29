@@ -1,4 +1,3 @@
-import React from 'react'
 import { phoneNumberSample } from '../constants'
 
 export const newNumberField = (valueNumber: string) => {
