@@ -1,0 +1,289 @@
+@import 'normalize.scss';
+%bg-position {
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #ece9e9;
+}
+.App {
+  margin: auto;
+  width: 1280px;
+  height: 720px;
+  position: relative;
+  overflow: hidden;
+  background-image: url(../assets/image/bg_and_promo.png);
+  @extend %bg-position;
+  .btnExit {
+    width: 60px;
+    height: 38px;
+    position: absolute;
+    top: 29px;
+    right: 50px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+  }
+  .handleOnFocus {
+    background: #000;
+    color: #fff;
+  }
+  button:hover {
+    background-color: black;
+    color: white;
+  }
+  .finally,
+  .register {
+    width: 365px;
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #86d3f4;
+    input[type='text'] {
+      width: 310px;
+      height: 50px;
+      position: absolute;
+      top: 0px;
+      left: -400px;
+      font-size: 35px;
+      font-weight: 700;
+      color: #070707;
+      background-color: #86d3f4;
+    }
+    input::placeholder {
+      color: #070707;
+    }
+    .titleRegister {
+      width: 177px;
+      height: 39px;
+      margin-top: 45px;
+      background-image: url(../assets/image/your_phone_number.png);
+      @extend %bg-position;
+    }
+    .phoneNumberBlock {
+      width: 310px;
+      height: 50px;
+      font-size: 35px;
+      font-weight: 700;
+    }
+    .textRegister {
+      width: 230px;
+      height: 25px;
+      background-image: url(../assets/image/we_write.png);
+      @extend %bg-position;
+    }
+    .virtualKeyboardBlock__none,
+    .virtualKeyboardBlock {
+      width: 325px;
+      height: 255px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5px;
+      .virtualKeyboardItems,
+      .virtualKeyboardItem__Backspace {
+        width: 90px;
+        height: 55px;
+        margin-left: 10px;
+        border: 2px solid black;
+        display: flex;
+        cursor: pointer;
+        span {
+          display: inline-block;
+          margin: auto;
+        }
+      }
+      .virtualKeyboardItem__Backspace {
+        width: 197px;
+      }
+      .handleOnFocus {
+        background: #000;
+        color: #fff;
+      }
+    }
+    .virtualKeyboardBlock__none {
+      .virtualKeyboardItems,
+      .virtualKeyboardItem__Backspace {
+        cursor: none;
+      }
+    }
+    .virtualKeyboardBlock div:hover {
+      background-color: #070707;
+      color: white;
+    }
+    .virtualKeyboardBlock div:active {
+      box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
+      border-radius: 2px;
+    }
+    .number__error,
+    .checkPersonalDataBlock {
+      width: 275px;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      .checkbox {
+        position: relative;
+        width: 25px;
+        height: 25px;
+        &:hover {
+          box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
+        }
+
+        .checkbox__input {
+          -webkit-appearance: none;
+          appearance: none;
+          position: absolute;
+        }
+        .checkbox__label {
+          padding-left: 25px;
+          cursor: pointer;
+        }
+      }
+      .checkbox.handleOnFocus {
+        box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
+      }
+      .checkbox__label:before {
+        content: '';
+        display: block;
+        width: 22px;
+        height: 21px;
+        border: 2px solid black;
+        background-color: #86d3f4;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .checkbox__label:after {
+        content: '';
+        display: block;
+        width: 25px;
+        height: 25px;
+        background: url(../assets/image/icons8-check.svg) no-repeat;
+        background-size: 20px 20px;
+        opacity: 0;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        z-index: 2;
+        transition: opacity 0.1s linear;
+      }
+      .checkbox__input:checked + .checkbox__label:before {
+        background-color: #86d3f4;
+        border-color: black;
+      }
+      .checkbox__input:checked + .checkbox__label:after {
+        opacity: 1;
+      }
+      .textCheckbox {
+        width: 220px;
+        height: 27px;
+        margin-top: 8px;
+        background-image: url(../assets/image/are_you_right.png);
+        @extend %bg-position;
+      }
+    }
+    .number__error {
+      background-image: url(../assets/image/number_error.png);
+      @extend %bg-position;
+    }
+    .btnVirtualKeyboard__enabled,
+    .btnVirtualKeyboard {
+      width: 200px;
+      height: 50px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: #4e4e4e;
+      background-color: #86d3f4;
+      border: 2px solid #4e4e4e;
+    }
+    .btnVirtualKeyboard__enabled {
+      color: white;
+      border: 2px solid #070707;
+      background-color: #070707;
+
+      cursor: pointer;
+      &:hover {
+        box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
+      }
+      &.handleOnFocus {
+        box-shadow: -1px 0px 8px 3px rgba(34, 60, 80, 0.4);
+      }
+    }
+  }
+  .finally {
+    .finally__text {
+      width: 250px;
+      height: 100px;
+      background-image: url(../assets/image/finally_text.png);
+      @extend %bg-position;
+    }
+  }
+}
+.playerCurtain__loading,
+.playerCurtain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1280px;
+  height: 720px;
+  background: rgba(216, 230, 237, 0);
+  overflow: hidden;
+  display: flex;
+  .banner {
+    position: absolute;
+    top: 210px;
+    right: -300px;
+    width: 200px;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid #6dccf4;
+    background-color: #86d3f4;
+    .titleBanner,
+    .qrCode,
+    .textBanner {
+      @extend %bg-position;
+    }
+    .titleBanner {
+      width: 170px;
+      height: 50px;
+      background-image: url(../assets/image/title_banner.png);
+      background-size: 170px 50px;
+      margin-top: 20px;
+    }
+    .qrCode {
+      width: 100px;
+      height: 100px;
+      background-image: url(../assets/image/qr-code.png);
+      background-size: 100px 100px;
+    }
+    .textBanner {
+      width: 110px;
+      height: 25px;
+      background-image: url(../assets/image/text_banner.png);
+      background-size: 100px 25px;
+    }
+    .bannerButton {
+      width: 125px;
+      height: 40px;
+      background-color: #070707;
+      color: #6dccf4;
+      margin-bottom: 25px;
+      cursor: pointer;
+    }
+  }
+}
+.playerCurtain__loading {
+  background: rgba(216, 230, 237, 1);
+}
